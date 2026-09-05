@@ -3,7 +3,6 @@ const UserModel = require("../models/userModel")
 const profile = async (req, res) => {
 
     const id = req.user.id
-    console.log(id)
     try {
         const userData = await UserModel.findById(id)
         if (!userData) {

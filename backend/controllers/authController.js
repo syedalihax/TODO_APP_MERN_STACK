@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const validator = require("validator")
 const UserModel = require("../models/userModel")
+const TokenModel = require("../models/tokenModel")
 
 const register = async (req, res) => {
     let { userName, email, role, password } = req.body
@@ -97,7 +98,7 @@ const login = async (req, res) => {
             })
         }
         const payload = { id: existEmail._id }
-        const token = await jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "3d" })
+        const token = await jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "3m" })
 
         res.status(200).json({
             success: true,
@@ -114,6 +115,24 @@ const login = async (req, res) => {
 
 }
 const logOut = async (req, res) => {
-    let token = req.headers.authorization
+    console.log(req.user)
+
+    let token = req.token
+    let expiresAt = new Date(req.user.exp * 1000)
+
+    try {
+        const removeToken = await TokenModel.create({ token, expiresAt })
+        res.status(200).json({
+            success: true,
+            message: "token blacklisted"
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+
+    }
+
 }
 module.exports = { register, login, logOut }
