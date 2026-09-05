@@ -5,14 +5,14 @@ const protected = async (req, res, next) => {
     const authorization = req.headers.authorization
     try {
         if (!authorization) {
-            return res.status(400).json({
+            return res.status(401).json({
                 success: false,
                 message: "token is required"
             })
         }
 
         if (!authorization.startsWith("Bearer ")) {
-            return res.status(403).json({
+            return res.status(401).json({
                 success: false,
                 message: "invalid token"
             })
@@ -21,7 +21,7 @@ const protected = async (req, res, next) => {
 
         const isblacklisted = await TokenModel.findOne({ token })
         if (isblacklisted) {
-            return res.status(403).json({
+            return res.status(401).json({
                 success: false,
                 message: "you were logout"
             })
@@ -29,7 +29,7 @@ const protected = async (req, res, next) => {
         const decoded = await jwt.verify(token, process.env.JWT_SECRET)
 
         if (!decoded) {
-            return res.status(403).json({
+            return res.status(401).json({
                 success: false,
                 message: "unAuthorized"
             })
@@ -46,7 +46,7 @@ const protected = async (req, res, next) => {
             })
         }
 
-        return res.status(500).json({
+        return res.status(401).json({
             success: false,
             message: error.message
         })

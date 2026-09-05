@@ -4,7 +4,7 @@ const profile = async (req, res) => {
 
     const id = req.user.id
     try {
-        const userData = await UserModel.findById(id)
+        const userData = await UserModel.findById(id, "-password")
         if (!userData) {
             return res.status(404).json({
                 success: false,

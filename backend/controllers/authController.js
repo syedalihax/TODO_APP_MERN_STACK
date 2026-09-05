@@ -67,8 +67,10 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     let { email, password } = req.body
+
     email = email.trim()
     email = email.toLowerCase()
+
     if (!email || !password) {
         return res.status(400).json({
             success: false,
@@ -115,7 +117,6 @@ const login = async (req, res) => {
 
 }
 const logOut = async (req, res) => {
-    console.log(req.user)
 
     let token = req.token
     let expiresAt = new Date(req.user.exp * 1000)
