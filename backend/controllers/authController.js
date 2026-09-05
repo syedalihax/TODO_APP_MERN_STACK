@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 const validator = require("validator")
 const UserModel = require("../models/userModel")
 
@@ -95,11 +96,14 @@ const login = async (req, res) => {
                 message: "invalid email or password"
             })
         }
+        const payload = { id: existEmail._id }
+        const token = await jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "3d" })
 
         res.status(200).json({
             success: true,
             message: "login SuccessFully",
-            data: { userName: existEmail.userName, email: existEmail.email, role: existEmail.role, id: existEmail._id }
+            data: { userName: existEmail.userName, email: existEmail.email, role: existEmail.role, id: existEmail._id },
+            token
         })
     } catch (error) {
         return res.status(500).json({
@@ -110,6 +114,6 @@ const login = async (req, res) => {
 
 }
 const logOut = async (req, res) => {
-    
+    let token = req.headers.authorization
 }
 module.exports = { register, login, logOut }
