@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import Navbar from "./components/Navbar"
-import Signup from "./components/Signup"
-import Login from "./components/Login"
+import Signup from "./pages/Signup"
+import Login from "./pages/Login"
 import Home from "./pages/Home"
 
 const App = () => {

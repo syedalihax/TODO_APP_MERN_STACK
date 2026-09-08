@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const Navbar = () => {
   return (
-    <nav className=' text-black flex justify-between px-16 items-center w-full h-20 bg-app-bg select-none'>
+    <nav className='text-black flex justify-between px-16 items-center w-full h-20 bg-app-bg select-none'>
       <div className="flex justify-center gap-2 items-center">
         <img className="w-15" src="../../public/notes.png" alt="" />
         <h1 className="text-3xl font-bold ">KEEP NOTES</h1>
