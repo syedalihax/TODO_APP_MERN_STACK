@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className='text-black flex justify-between px-16 items-center w-full h-20 bg-app-bg select-none'>
       <div className="flex justify-center gap-2 items-center">
-        <img className="w-15" src="../../public/notes.png" alt="" />
+        <img className="w-15" src="/notes.png" alt="" />
         <h1 className="text-3xl font-bold ">KEEP NOTES</h1>
       </div>
         <ul className="mr-10 flex justify-center gap-5 text-xl items-center font-semibold">
