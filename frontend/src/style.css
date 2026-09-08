@@ -1,2 +1,19 @@
 @import "tailwindcss";
 
+/* primary color : Crimson red : #E11D48 Main accents, progress bars*/
+/* Button/CTA : Bright Violet : #A855F7 Submit, Add Task buttons*/
+/* background : clean white : #FAFAFA All screens, minimal look*/
+/* secondary : red brown : #2D1C1C Body text and borders*/
+/* accent : sunny yellow : #FACC15 Star marks, priority tasks*/
+@theme {
+    --color-primary: #E11D48;
+    /* Crimson Red */
+    --color-btn: #A855F7;
+    /* Bright Violet */
+    --color-app-bg: #FAFAFA;
+    /* Clean White */
+    --color-body-text: #2D1C1C;
+    /* Red Brown */
+    --color-accent: #FACC15;
+    /* Sunny Yellow */
+}
