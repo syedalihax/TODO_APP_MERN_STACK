@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Nav from '../components/Nav'
 
 const Signup = () => {
     const [userName, setUserName] = useState("")
@@ -27,7 +26,7 @@ const Signup = () => {
     return (
 
         <>
-        
+
         </>
     )
 }
