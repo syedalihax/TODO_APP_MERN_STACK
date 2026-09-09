@@ -29,19 +29,7 @@ const Navbar = () => {
           <line x1="4" y1="18" x2="20" y2="18" />
         </svg>
 
-        {/* <svg
-          className="w-6 h-6 text-red-600"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          >
-          <path
-          d="M4 4L16 16M16 4L4 16"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          />
-          </svg> */}
+
       </div>
 
     </nav>
