@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar"
 
 const Home = () => {
   return (
-    <div className="h-screen">
+    <div className="h-screen fixed">
       <Navbar />
       <div className="select-none w-full sm:flex flex-row-reverse h-[89%]">
         <div className="bg-[url('hero.jpg')] bg-cover bg-center  w-full h-[45%] sm:h-[70%] sm:w-[50%] lg:h-[90%]"> </div>
