@@ -27,3 +27,10 @@
 body{
     background: #FAFAFA;
 }
+/* Apni CSS file mein yeh add karo */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-primary) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
