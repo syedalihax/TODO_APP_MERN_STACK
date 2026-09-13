@@ -5,24 +5,6 @@ const Signup = () => {
     const [userName, setUserName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
-    const submitHandler = (e) => {
-        e.preventDefault()
-        if (userName.trim() == "" || email.trim() == "" || password == "") {
-            return alert("Name , email , password is required")
-        }
-        submitForm()
-    }
-
-    const submitForm = () => {
-        console.log(userName)
-        console.log(email)
-        console.log(password)
-        setUserName("")
-        setEmail("")
-        setPassword("")
-    }
-
     return (
 
         <div className=' relative md:px-10 sm:py-20 py-10 flex select-none h-full w-full '>
@@ -40,30 +22,33 @@ const Signup = () => {
                         </Link>
                     </div>
                     <h1 className='text-3xl md:text-4xl font-semibold text-center my-2 mt-3 text-primary'>Join Keep Notes</h1>
-                    <p className='text-sm text-center mb-5 text-btn md:text-lg'>Create your account in seconds</p>
+                    <p className='text-sm text-center mb-5 text-btn md:text-lg'>Create Your Account in Seconds</p>
                     <div >
-                        <form className='flex flex-col justify-center gap-1 border-t pt-5 border-primary' onSubmit={submitHandler}>
-                            <label className='text-btn font-medium text-lg'>User Name:</label>
-                            <input className='text-md text-primary/70 border py-2 px-3 outline-0 border-btn rounded-md mb-4 md:font-semibold'
+                        <form className='flex flex-col justify-center gap-1 border-t pt-5 border-primary'>
+                            <label htmlFor='username' className='text-btn font-medium text-lg'>User Name:</label>
+                            <input id='username' autoComplete='username' className='text-md text-primary/70 border py-2 px-3 outline-0 border-btn rounded-md mb-4 md:font-semibold'
                                 value={userName}
                                 onChange={(e) => { setUserName(e.target.value) }}
                                 type="text"
                             />
-                            <label className='text-btn font-medium text-lg'>Email:</label>
-                            <input className='text-md text-primary/70 border py-2 px-3 outline-0 border-btn rounded-md mb-4 md:font-semibold'
+                            <label className='text-btn font-medium text-lg' htmlFor='email'>Email:</label>
+                            <input id='email' autoComplete='email' className='text-md text-primary/70 border py-2 px-3 outline-0 border-btn rounded-md mb-4 md:font-semibold'
                                 value={email}
                                 onChange={(e) => { setEmail(e.target.value) }}
                                 type="email"
                             />
-                            <label className='text-btn font-medium text-lg'>Password:</label>
-                            <input className='text-md text-primary/70 border py-2 px-3 outline-0 border-btn rounded-md mb-4 md:font-semibold'
+                            <label htmlFor='password' className='text-btn font-medium text-lg'>Password:</label>
+                            <input id='password' autoComplete='off' className='text-md text-primary/70 border py-2 px-3 outline-0 border-btn rounded-md mb-4 md:font-semibold'
                                 type="password"
                                 value={password}
                                 onChange={(e) => { setPassword(e.target.value) }}
                             />
-                            <button type='submit' className='bg-primary md:px-10 md:text-lg text-white w-fit py-2 px-5 rounded-lg ml-auto'>
-                                SignUp
-                            </button>
+                            <div className='w-full flex justify-between gap-1 items-center'>
+
+                                <button type='submit' className='bg-primary md:px-10 md:text-lg text-white w-fit py-2 px-5 rounded-lg ml-auto'>
+                                    SignUp
+                                </button>
+                            </div>
                         </form>
                         <p className='my-5'>Already have an account? <span className='underline text-btn font-semibold'><Link to={'/login'}>Login</Link></span></p>
                     </div>
