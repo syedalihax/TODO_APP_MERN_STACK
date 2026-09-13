@@ -1,10 +1,48 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from "axios"
+import validator from "validator"
+
 
 const Signup = () => {
     const [userName, setUserName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
+    const navigate = useNavigate()
+
+    const inputHandler = async (e) => {
+        e.preventDefault()
+        setError("")
+        if (userName.length < 5) {
+            return setError("UserName must be at least 5 characters")
+        }
+
+        if (!validator.isEmail(email)) {
+            return setError("Please enter a valid email address")
+        }
+        if (!validator.isStrongPassword(password, { minSymbols: 0, minLength: 6, minLowercase: 1, minUppercase: 1, minNumbers: 1 })) {
+
+            console.log(password)
+
+            return setError("Password must be at least 1 capital letter , 1 small letter , 1 number and total 8 characters ")
+        }
+        submitHandler()
+    }
+    const submitHandler = async () => {
+        try {
+
+            const response = await axios.post("http://127.0.0.1:5000/api/auth/register", {
+                userName, email, password
+            })
+            alert(response.data.message)
+navigate('/login')
+        } catch (error) {
+            setError(error.response.data.message || "server side error")
+        }
+    }
+
+
     return (
 
         <div className=' relative md:px-10 sm:py-20 py-10 flex select-none h-full w-full '>
@@ -22,26 +60,31 @@ const Signup = () => {
                         </Link>
                     </div>
                     <h1 className='text-3xl md:text-4xl font-semibold text-center my-2 mt-3 text-primary'>Join Keep Notes</h1>
-                    <p className='text-sm text-center mb-5 text-btn md:text-lg'>Create Your Account in Seconds</p>
+                    {error ? <p className='mx-auto font-medium w-fit text-sm text-center my-5 text-red-500 md:text-md border-2 bg-red-700/15 border-red-500 rounded px-2 py-1'>{error}</p> : <p className='text-sm text-center mb-5 text-btn md:text-lg'>Create Your Account in Seconds</p>}
                     <div >
-                        <form className='flex flex-col justify-center gap-1 border-t pt-5 border-primary'>
+                        <form onSubmit={(e) => { inputHandler(e) }} className='flex flex-col justify-center gap-1 border-t pt-5 border-primary'>
                             <label htmlFor='username' className='text-btn font-medium text-lg'>User Name:</label>
-                            <input id='username' autoComplete='username' className='text-md text-primary/70 border py-2 px-3 outline-0 border-btn rounded-md mb-4 md:font-semibold'
+                            <input id='username' autoComplete='username' className='text-md text-primary/70 border py-2 px-3 outline-0 border-btn rounded-md mb-4 md:font-semibold '
+
+                                required
+                                placeholder='peter_52'
                                 value={userName}
-                                onChange={(e) => { setUserName(e.target.value) }}
+                                onChange={(e) => { setError(""), setUserName(e.target.value) }}
                                 type="text"
                             />
                             <label className='text-btn font-medium text-lg' htmlFor='email'>Email:</label>
                             <input id='email' autoComplete='email' className='text-md text-primary/70 border py-2 px-3 outline-0 border-btn rounded-md mb-4 md:font-semibold'
+                                required
+                                placeholder='peter.34@gmail.com'
                                 value={email}
-                                onChange={(e) => { setEmail(e.target.value) }}
+                                onChange={(e) => { setError(""), setEmail(e.target.value) }}
                                 type="email"
                             />
                             <label htmlFor='password' className='text-btn font-medium text-lg'>Password:</label>
                             <input id='password' autoComplete='off' className='text-md text-primary/70 border py-2 px-3 outline-0 border-btn rounded-md mb-4 md:font-semibold'
                                 type="password"
                                 value={password}
-                                onChange={(e) => { setPassword(e.target.value) }}
+                                onChange={(e) => { setError(""), setPassword(e.target.value) }}
                             />
                             <div className='w-full flex justify-between gap-1 items-center'>
 
@@ -60,5 +103,4 @@ const Signup = () => {
         </div>
     )
 }
-
 export default Signup
