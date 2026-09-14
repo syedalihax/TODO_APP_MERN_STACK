@@ -23,7 +23,7 @@ const Signup = () => {
         }
         if (!validator.isStrongPassword(password, { minSymbols: 0, minLength: 6, minLowercase: 1, minUppercase: 1, minNumbers: 1 })) {
 
-            console.log(password)
+            
 
             return setError("Password must be at least 1 capital letter , 1 small letter , 1 number and total 8 characters ")
         }
@@ -36,7 +36,7 @@ const Signup = () => {
                 userName, email, password
             })
             alert(response.data.message)
-navigate('/login')
+            navigate('/login')
         } catch (error) {
             setError(error.response.data.message || "server side error")
         }
