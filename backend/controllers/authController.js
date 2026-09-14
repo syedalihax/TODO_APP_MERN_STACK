@@ -20,10 +20,10 @@ const register = async (req, res) => {
             message: "username , email , password is required"
         })
     }
-    if (userName.length < 3 || userName.length > 10) {
+    if (userName.length < 3 || userName.length > 20) {
         return res.status(400).json({
             success: false,
-            message: "username should be at least 3 to 10 characters."
+            message: "username should be at least 3 to 20 characters."
         })
     }
     if (!validator.isEmail(email)) {
