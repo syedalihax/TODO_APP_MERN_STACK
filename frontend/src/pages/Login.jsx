@@ -42,7 +42,7 @@ const Login = () => {
                 navigate("/")
             }, 3000);
         } catch (error) {
-            setError(error.response.data.message || "server side error" || JSON.stringify(error.message) + " -- " + JSON.stringify(error.response?.data))
+            setError(error.response.data.message || JSON.stringify(error.message) + " -- " + JSON.stringify(error.response?.data))
         } finally {
             setLoading(false)
         }

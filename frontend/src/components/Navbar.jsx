@@ -1,7 +1,11 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-const Navbar = () => {
+const Navbar = (props) => {
+  let Nav2 = false
+  if (props.position === "authorized") {
+    Nav2 = true
+  }
   const [openMenu, setOpenMenu] = useState(false)
   return (
     <nav className="select-none w-full  h-20 flex items-center px-5 sm:px-10 md:px-15 lg:px-25 justify-between ">
@@ -9,11 +13,21 @@ const Navbar = () => {
         <img className="w-10 sm:w-12 md:w-15" src="/notes.png" alt="logo" />
         <h1 className="text-xl sm:text-2xl sm:font-semibold md:text-3xl md:font-semibold">KEEP NOTES</h1>
       </div>
-      <div className="hidden sm:flex text-xl font-medium gap-5 justify-center items-center">
-        <button ><Link to={'/'}>Home</Link></button>
-        <button><Link to={'/login'}>Login</Link></button>
-        <button className="bg-btn hover:bg-[#9c4de5] py-2 px-4 rounded-lg text-white cursor-pointer"><Link to={'/signup'}>Start for Free</Link></button>
-      </div>
+
+
+      {
+        Nav2 ?
+          <div className="hidden sm:flex text-xl font-medium gap-5 justify-center items-center">
+            <button className="bg-btn hover:bg-[#9c4de5] py-2 px-4 rounded-lg text-white cursor-pointer"><Link to={'/profile'}>Profile</Link></button>
+            <button className="bg-red-500 hover:bg-primary py-2 px-4 rounded-lg text-white cursor-pointer"><Link to={'/LogOut'}>LogOut</Link></button>
+          </div>
+          :
+          <div className="hidden sm:flex text-xl font-medium gap-5 justify-center items-center">
+            <button ><Link to={'/'}>Home</Link></button>
+            <button><Link to={'/login'}>Login</Link></button>
+            <button className="bg-btn hover:bg-[#9c4de5] py-2 px-4 rounded-lg text-white cursor-pointer"><Link to={'/signup'}>Start for Free</Link></button>
+          </div>
+      }
       <div className="sm:hidden">
         <button onClick={() => {
           setOpenMenu(true)
@@ -57,11 +71,17 @@ const Navbar = () => {
             </svg>
           </button>
 
-          <div className="flex flex-col w-full text-left gap-1 items-start pl-3 mt-5">
-            <button><Link to={'/'}>Home</Link></button>
-            <button><Link to={'/signup'}>Signup</Link></button>
-            <button><Link to={'/login'}>Login</Link></button>
-          </div>
+          {Nav2 ?
+            <div className="flex flex-col w-full text-left gap-1 items-start pl-3 mt-5">
+              <button><Link to={'/profile'}>Profile</Link></button>
+              <button><Link to={'/logout'}>LogOut</Link></button>
+            </div>
+            :
+            <div className="flex flex-col w-full text-left gap-1 items-start pl-3 mt-5">
+              <button><Link to={'/'}>Home</Link></button>
+              <button><Link to={'/signup'}>SignUp</Link></button>
+              <button><Link to={'/login'}>Login</Link></button>
+            </div>}
         </div>
 
       </div>
