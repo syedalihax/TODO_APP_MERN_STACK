@@ -6,7 +6,7 @@ const Home = () => {
     <div className="h-screen fixed">
       <Navbar />
       <div className="select-none w-full sm:flex flex-row-reverse h-[89%]">
-        <div className="bg-[url('hero.jpg')] bg-cover bg-center  w-full h-[45%] sm:h-[70%] sm:w-[50%] lg:h-[90%]"> </div>
+        <div className="bg-[url('/hero.jpg')] bg-cover bg-center  w-full h-[45%] sm:h-[70%] sm:w-[50%] lg:h-[90%]"> </div>
 
         <div className="p-4 w-full sm:w-[50%] sm:h-[70%] lg:h-[90%] lg:pl-10 flex flex-col justify-center gap-2 ">
           <h1 className="sm:px-8 md:px-15 text-xl sm:font-semibold md:text-2xl lg:text-4xl lg:font-bold">Unlock Effortless Productivity. Your Notes, Organized.</h1>
