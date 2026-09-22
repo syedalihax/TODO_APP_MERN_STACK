@@ -39,7 +39,7 @@ const Login = () => {
             localStorage.setItem("token", response.data.token)
             setData(response.data.message)
             setTimeout(() => {
-                navigate("/")
+                navigate("/dashboard")
             }, 3000);
         } catch (error) {
             setError(error.response.data.message || JSON.stringify(error.message) + " -- " + JSON.stringify(error.response?.data))
