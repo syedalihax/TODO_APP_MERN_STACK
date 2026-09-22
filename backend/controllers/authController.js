@@ -100,7 +100,7 @@ const login = async (req, res) => {
             })
         }
         const payload = { id: existEmail._id }
-        const token = await jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "3m" })
+        const token = await jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "10m" })
 
         res.status(200).json({
             success: true,
