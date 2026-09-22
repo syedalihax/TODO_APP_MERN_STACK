@@ -1,11 +1,11 @@
 import Navbar from '../components/Navbar'
 
-const Dashboard = () => {
+const Dashboard = () => {  
   return (
     <div className=''>
-        <Navbar position="authorized"/>
-        hello worlds
-        <h1>I am very verfygood </h1>
+      <Navbar position="authorized"/>
+      hello worlds
+      <h1>I am very verfygood </h1>
     </div>
   )
 }
